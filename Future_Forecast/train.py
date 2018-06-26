@@ -45,7 +45,7 @@ nparr = np.append(nparr, 0)
 nparr = np.append(nparr, 0)
 nparr = np.append(nparr, 0)
 '''
-print(nparr)  # 이렇게 불러와서 똑같이 작업하면 될듯 함. 
+print(nparr) 
 print(nparr[-1])
 test = np.reshape(nparr, (len(nparr),1))
 
@@ -54,7 +54,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 nptf = scaler.fit_transform(test)
 #print(nptf)
 
-print('-------------------------------- 데이터 정규화 끝')
+print('-------------------------------- ')
  
 # split train, test
 train_size = int(len(nptf) * 0.9)
@@ -63,7 +63,7 @@ train, test = nptf[0:train_size], nptf[train_size:len(nptf)]
 print(len(train), len(test))
 
 
-print('-------------------------------- train, test 나누기')
+print('-------------------------------- ')
 
 # create dataset for learning
 trainX, trainY = create_dataset(train, look_back)
@@ -77,7 +77,7 @@ print(trainX.shape)
 print(testX.shape)
 #print(testX)
 
-print('-------------------------------- train, test 정리')
+print('--------------------------------')
 
 # simple lstm network learning
 model = Sequential()
@@ -95,8 +95,8 @@ model.save('my_model.h5')
 
 # make prediction
 testPredict = model.predict(testX)
-testPredict = scaler.inverse_transform(testPredict) # 되돌림
-testY = scaler.inverse_transform(testY) # 되돌림
+testPredict = scaler.inverse_transform(testPredict) 
+testY = scaler.inverse_transform(testY)
 testScore = math.sqrt(mean_squared_error(testY, testPredict))
 print('Train Score: %.2f RMSE' % testScore)
 
@@ -105,7 +105,6 @@ lastX = nptf[-1]
 lastX = np.reshape(lastX, (1, 1, 1))
 
 
-# lastX 를 넣으면된다. 데이터 예측 할때 
 
 print(lastX)
 
