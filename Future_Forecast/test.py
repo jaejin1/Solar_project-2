@@ -34,7 +34,7 @@ while True:
 
     print(data_x)
     print(data_y)
-    print(data_z)
+    #print(data_z)
 
     test_x = np.reshape(data_x, (len(data_x),1))
     test_y = np.reshape(data_y, (len(data_y),1))
@@ -84,7 +84,7 @@ while True:
     print('Predict gyro_x fourth: %d' % lastX4)  
 
     if lastX4 > 10 or lastX4 < -10:
-        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
+        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
@@ -114,8 +114,8 @@ while True:
     print('Predict gyro_y third: %d' % lastY3)  
     print('Predict gyro_y fourth: %d' % lastY4)  
     
-    if lastX4 > 10 or lastX4 < -10:
-        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
+    if lastY4 > 10 or lastY4 < -10:
+        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
@@ -140,13 +140,13 @@ while True:
     lastZ3 = scaler.inverse_transform(lastZ3)
     lastZ4 = scaler.inverse_transform(lastZ4)
 
-    print('Predict gyro_x first: %d' % lastZ)  
-    print('Predict gyro_x second: %d' % lastZ2)  
-    print('Predict gyro_x third: %d' % lastZ3)  
-    print('Predict gyro_x fourth: %d' % lastZ4)  
+    print('Predict gyro_z first: %d' % lastZ)  
+    print('Predict gyro_z second: %d' % lastZ2)  
+    print('Predict gyro_z third: %d' % lastZ3)  
+    print('Predict gyro_z fourth: %d' % lastZ4)  
 
-    if lastX4 > 10 or lastX4 < -10:
-        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
+    if lastZ4 > 10 or lastZ4 < -10:
+        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
