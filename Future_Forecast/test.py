@@ -19,7 +19,7 @@ while True:
     curs.execute(sql)
 
     rows = curs.fetchall()
-    print(rows)
+    print(rows)  # db result 
 
     conn.close()
 
@@ -52,33 +52,33 @@ while True:
     last_y = nptf_y[-1]
     last_y = np.reshape(last_y, (1, 1, 1))
 
-    # lastX 를 넣으면된다. 데이터 예측 할때 
-
     print(last_x)
 
-    lastY = model.predict(last_x)
-    lastY2 = np.reshape(lastY, (1, 1, 1))
+    lastX = model.predict(last_x)
+    lastX2 = np.reshape(lastX, (1, 1, 1))
 
-    lastY2 = model.predict(lastY2)
-    lastY3 = np.reshape(lastY2, (1, 1, 1))
+    lastX2 = model.predict(lastX2)
+    lastX3 = np.reshape(lastX2, (1, 1, 1))
 
-    lastY3 = model.predict(lastY3)
-    lastY4 = np.reshape(lastY3, (1, 1, 1))
+    lastX3 = model.predict(lastX3)
+    lastX4 = np.reshape(lastX3, (1, 1, 1))
 
-    lastY4 = model.predict(lastY4)
-    lastY5 = np.reshape(lastY4, (1, 1, 1))
+    lastX4 = model.predict(lastX4)
 
 
-    lastY = scaler.inverse_transform(lastY)
-    lastY2 = scaler.inverse_transform(lastY2)
-    lastY3 = scaler.inverse_transform(lastY3)
-    lastY4 = scaler.inverse_transform(lastY4)
+    lastX = scaler.inverse_transform(lastX)
+    lastX2 = scaler.inverse_transform(lastX2)
+    lastX3 = scaler.inverse_transform(lastX3)
+    lastX4 = scaler.inverse_transform(lastX4)
 
-    print('Predict gyro_x first: %d' % lastY)  
-    print('Predict gyro_x second: %d' % lastY2)  
-    print('Predict gyro_x third: %d' % lastY3)  
-    print('Predict gyro_x fourth: %d' % lastY4)  
+    print('Predict gyro_x first: %d' % lastX)  
+    print('Predict gyro_x second: %d' % lastX2)  
+    print('Predict gyro_x third: %d' % lastX3)  
+    print('Predict gyro_x fourth: %d' % lastX4)  
 
+    if lastX4 > 10 or lastX4 < -10:
+        print('dangerous!!')
+        # add sql
 
     print(last_y)
 
@@ -104,5 +104,9 @@ while True:
     print('Predict gyro_y second: %d' % lastY2)  
     print('Predict gyro_y third: %d' % lastY3)  
     print('Predict gyro_y fourth: %d' % lastY4)  
+    
+    if lastX4 > 10 or lastX4 < -10:
+        print('dangerous!!')
+        # add sql
 
     time.sleep(5)
