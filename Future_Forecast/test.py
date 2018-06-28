@@ -14,10 +14,9 @@ import pymysql
 conn = pymysql.connect(host='localhost', user='ROOT', password=' ', db='solar', charset='utf8')
 curs = conn.cursor()
 
-sql = 'select gyro_x, gyro_y from solar order by num desc limit 4'
-curs.execute(sql)
-
 while True:
+    sql = 'select gyro_x, gyro_y from solar order by num desc limit 4'
+    curs.execute(sql)
 
     rows = curs.fetchall()
     print(rows)
