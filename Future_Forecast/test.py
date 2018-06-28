@@ -15,7 +15,7 @@ while True:
     conn = pymysql.connect(host='localhost', user='ROOT', password=' ', db='solar', charset='utf8')
     curs = conn.cursor()
 
-    sql = 'select gyro_x, gyro_y from solar order by num desc limit 4'
+    sql = 'select gyro_x, gyro_y from solar1 order by num desc limit 4'
     curs.execute(sql)
 
     rows = curs.fetchall()
@@ -84,7 +84,7 @@ while True:
     print('Predict gyro_x fourth: %d' % lastX4)  
 
     if lastX4 > 10 or lastX4 < -10:
-        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
+        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
@@ -115,7 +115,7 @@ while True:
     print('Predict gyro_y fourth: %d' % lastY4)  
     
     if lastY4 > 10 or lastY4 < -10:
-        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
+        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
@@ -146,7 +146,7 @@ while True:
     print('Predict gyro_z fourth: %d' % lastZ4)  
 
     if lastZ4 > 10 or lastZ4 < -10:
-        sql = 'update solar set safe="1" where num>1 order by num desc limit 1'
+        sql = 'update solar1 set safe1="1" where num>1 order by num desc limit 1'
         curs.execute(sql)
         print('dangerous!!')
         # add sql
